@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Automated Invoice Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+
+    <!-- LOGIN PAGE -->
+    <div id="loginPage">
+      <h1>Login</h1>
+      <input id="username" placeholder="Username">
+      <input id="password" type="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+    </div>
+
+    <!-- MAIN APP -->
+    <div id="appPage" class="hidden">
+      <h1>Automated Invoice Generator</h1>
+
+      <!-- Client Details -->
+      <fieldset>
+        <legend>Client Details</legend>
+        <input id="clientName" placeholder="Client Name" required>
+        <input id="clientEmail" placeholder="Client Email">
+        <textarea id="clientAddress" placeholder="Client Address"></textarea>
+      </fieldset>
+
+      <!-- Items -->
+      <fieldset>
+        <legend>Invoice Items</legend>
+        <table id="itemsTable">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="itemsBody"></tbody>
+        </table>
+        <button onclick="addRow()">+ Add Item</button>
+      </fieldset>
+
+      <!-- Tax -->
+      <fieldset>
+        <legend>Tax</legend>
+        <input type="number" id="tax" value="0" step="0.01">
+      </fieldset>
+
+      <!-- Totals -->
+      <fieldset id="totals">
+        <legend>Totals</legend>
+        <p>Subtotal: <span id="subtotal">0</span></p>
+        <p>Tax: <span id="taxDisplay">0</span></p>
+        <p><strong>Grand Total: <span id="grandTotal">0</span></strong></p>
+      </fieldset>
+
+      <!-- Buttons -->
+      <button onclick="saveInvoice()">💾 Save Invoice</button>
+      <button onclick="generateInvoice()">📄 Generate PDF</button>
+      <button onclick="viewHistory()">📜 View History</button>
+
+      <!-- History -->
+      <div id="historyPage" class="hidden">
+        <h2>Invoice History</h2>
+        <table>
+          <thead>
+            <tr><th>Invoice No</th><th>Date</th><th>Client</th><th>Total</th></tr>
+          </thead>
+          <tbody id="historyTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
